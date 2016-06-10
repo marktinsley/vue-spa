@@ -1,0 +1,9 @@
+<gnb-alert type="danger">
+    <span class="icon-ok-circled alert-icon-float-left"></span>
+    {{ message }}
+
+    <ul v-if="list.length">
+        <li v-for="listMessage in list">{{ listMessage }}</li>
+    </ul>
+</gnb-alert>
+

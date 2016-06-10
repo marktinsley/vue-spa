@@ -1,0 +1,62 @@
+<nav class="navbar navbar-default navbar-static-top gnb-NavBar">
+    <div class="container">
+        <div class="navbar-header">
+
+            <!-- Collapsed Hamburger -->
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#app-navbar-collapse">
+                <span class="sr-only">Toggle Navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <!-- Branding Image -->
+            <a class="navbar-brand" v-link="{ path: '/' }">
+                GottaNabit
+            </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="app-navbar-collapse">
+            <!-- Left Side Of Navbar -->
+            <ul class="nav navbar-nav">
+                <li><a v-link="{ path: '/' }">Home</a></li>
+            </ul>
+
+            <!-- Right Side Of Navbar -->
+            <ul v-if="userIsLoggedIn" class="nav navbar-nav navbar-right">
+                <li>
+                    <a v-link="{ path: '/admin' }">
+                        <span class="glyphicon glyphicon-user"></span>
+                        Admin
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        {{ user.name }} <span class="caret"></span>
+                    </a>
+
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a v-link="{ name: 'profile' }">
+                                <span class="glyphicon glyphicon-user"></span>
+                                Profile
+                            </a>
+                        </li>
+                        <li>
+                            <a v-link="{ name: 'logout' }">
+                                <i class="fa fa-btn fa-sign-out"></i>
+                                Logout
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- Authentication Links -->
+            <ul v-else class="nav navbar-nav navbar-right">
+                <li><a v-link="{ name: 'login' }">Login</a></li>
+                <li><a class="gnb-NavBar__register-button" v-link="{ path: '/register' }">Register</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>

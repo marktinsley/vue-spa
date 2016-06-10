@@ -1,8 +1,18 @@
-import Vue from 'vue'
-import App from './App'
+import {router, store} from './vue-bootstrap'
+import {defineRoutes} from './routes'
+import {pullSessionInfo} from './Vuex/actions'
 
-/* eslint-disable no-new */
-new Vue({
-  el: 'body',
-  components: { App }
-})
+defineRoutes(router)
+  .start({
+    store,
+    vuex: {
+      getters: {
+        pullingSessionInfo: state => state.authentication.pullingSessionInfo,
+        userIsLoggedIn: state => state.authentication.userIsLoggedIn,
+        user: state => state.authentication.user
+      },
+      actions: {
+        pullSessionInfo
+      }
+    }
+  }, 'body')

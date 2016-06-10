@@ -1,0 +1,7 @@
+.notification-group {
+  position: fixed;
+  top: 60px;
+  right: 10px;
+  width: 350px;
+  z-index: 1000;
+}

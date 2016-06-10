@@ -1,0 +1,87 @@
+<gnb-page-container>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <gnb-progress-bar v-if="loading"></gnb-progress-bar>
+
+            <gnb-error-message v-if="errorMessage"
+                               :message="errorMessage"
+                               :list="errorList"
+            ></gnb-error-message>
+
+            <gnb-alert type="success" v-if="success">
+                You are registered.
+            </gnb-alert>
+
+            <gnb-panel v-else>
+                <span slot="heading">Register</span>
+                <div slot="body">
+                    <validator name="validation">
+                        <form class="form-horizontal" role="form" novalidate @submit.prevent="submit">
+
+                            <div class="form-group" :class="{ 'has-error': $validation.name.invalid }">
+                                <label class="col-md-4 control-label">Name</label>
+
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="name" v-model="formData.name"
+                                           initial="off" v-validate:name="['required']">
+
+                                    <p class="help-block" v-if="$validation.name.invalid">
+                                        Please provide your name.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="form-group" :class="{ 'has-error': $validation.email.invalid }">
+                                <label class="col-md-4 control-label">E-Mail Address</label>
+
+                                <div class="col-md-6">
+                                    <input type="email" class="form-control" name="email" v-model="formData.email"
+                                           initial="off" v-validate:email="['required', 'email']">
+
+                                    <p class="help-block" v-if="$validation.email.invalid">
+                                        Please provide an email address.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="form-group" :class="{ 'has-error': $validation.password.invalid }">
+                                <label class="col-md-4 control-label">Password</label>
+
+                                <div class="col-md-6">
+                                    <input type="password" class="form-control" name="password" v-model="formData.password"
+                                           initial="off" v-validate:password="{ required: true, minlength: 8 }">
+
+                                    <p class="help-block" v-if="$validation.password.invalid">
+                                        Please provide a password that's at least eight characters long.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="form-group" :class="{ 'has-error': $validation.passwordConfirmation.invalid }">
+                                <label class="col-md-4 control-label">Confirm Password</label>
+
+                                <div class="col-md-6">
+                                    <input type="password" class="form-control" name="password_confirmation" v-model="formData.password_confirmation"
+                                           v-validate:password-confirmation="['passwordsMatch']">
+
+                                    <p class="help-block" v-if="$validation.passwordConfirmation.invalid">
+                                        Your passwords must match.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-6 col-md-offset-4">
+                                    <button type="submit" class="btn btn-primary"
+                                            v-if="$validation.valid && allRequiredFieldsHaveData">
+                                        <i class="fa fa-btn fa-user"></i> Register
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </validator>
+                </div>
+            </gnb-panel>
+        </div>
+    </div>
+</gnb-page-container>

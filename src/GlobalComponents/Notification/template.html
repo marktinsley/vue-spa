@@ -1,0 +1,11 @@
+<div :class="'animated alert ' + class"
+     transition="fade-in"
+     role="alert">
+    <button type="button" class="close" @click="triggerClose">
+        <span>&times;</span>
+    </button>
+
+    <strong v-if="notification.title">{{ notification.title }}</strong>
+
+    <p>{{ notification.message }}</p>
+</div>

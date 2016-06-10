@@ -1,0 +1,12 @@
+<gnb-page-container>
+    <gnb-progress-bar v-if="loading"></gnb-progress-bar>
+
+    <div class="row" v-else>
+        <gnb-alert type="success" v-if="!userIsLoggedIn">
+            You have successfully logged out.
+        </gnb-alert>
+        <gnb-error-message v-if="errorMessage"
+                           :message="errorMessage"
+        ></gnb-error-message>
+    </div>
+</gnb-page-container>
