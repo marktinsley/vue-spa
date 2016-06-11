@@ -1,4 +1,4 @@
-import {logout} from '../../Vuex/actions'
+import {logout} from '../../../Vuex/actions'
 
 export default {
   vuex: {

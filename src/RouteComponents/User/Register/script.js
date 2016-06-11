@@ -1,6 +1,6 @@
 import forEach from 'lodash.foreach'
-import UserApi from '../../Library/Api/UserApi'
-import ServerErrorParser from '../../Library/Api/ServerErrorParser'
+import UserApi from '../../../Library/Api/UserApi'
+import ServerErrorParser from '../../../Library/Api/ServerErrorParser'
 
 export default {
   data () {
@@ -95,4 +95,3 @@ export default {
     }
   }
 }
-

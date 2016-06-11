@@ -1,0 +1,18 @@
+header {
+  /*background: linear-gradient(90deg,#1d976c 10%,#93f9b9 90%);*/
+  background: linear-gradient(90deg,#337ab7 10%,#99dffd 90%);
+  margin: -20px 0 40px;
+  padding: 60px 15px;
+  font-size: 24px;
+  text-align: left;
+  filter: none;
+  color: #FEFEFE;
+  font-family: 'Lato';
+}
+
+h1 {
+  color: white;
+  font-size: 60px;
+  font-family: 'Lato';
+  text-shadow: 1px 1px 3px #555;
+}

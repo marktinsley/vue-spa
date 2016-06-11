@@ -1,5 +1,5 @@
-import NotificationBuilder from '../../Library/NotificationBuilder'
-import {notify, login} from '../../Vuex/actions'
+import NotificationBuilder from '../../../Library/NotificationBuilder'
+import {notify, login} from '../../../Vuex/actions'
 
 export default {
   data () {

@@ -18,11 +18,6 @@
         </div>
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
-            <!-- Left Side Of Navbar -->
-            <ul class="nav navbar-nav">
-                <li><a v-link="{ path: '/' }">Home</a></li>
-            </ul>
-
             <!-- Right Side Of Navbar -->
             <ul v-if="userIsLoggedIn" class="nav navbar-nav navbar-right">
                 <li>
@@ -55,7 +50,7 @@
             <!-- Authentication Links -->
             <ul v-else class="nav navbar-nav navbar-right">
                 <li><a v-link="{ name: 'login' }">Login</a></li>
-                <li><a class="gnb-NavBar__register-button" v-link="{ path: '/register' }">Register</a></li>
+                <li><a class="gnb-NavBar__register-button" v-link="{ path: '/user/register' }">Register</a></li>
             </ul>
         </div>
     </div>
