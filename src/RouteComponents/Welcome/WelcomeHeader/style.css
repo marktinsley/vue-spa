@@ -1,6 +1,5 @@
 header {
-  /*background: linear-gradient(90deg,#1d976c 10%,#93f9b9 90%);*/
-  background: linear-gradient(90deg,#337ab7 10%,#99dffd 90%);
+  background: linear-gradient(45deg,#337ab7 10%,#99dffd 90%);
   margin: -20px 0 40px;
   padding: 60px 15px;
   font-size: 24px;

@@ -1,4 +1,4 @@
-import {removeNotification} from '../../Vuex/actions'
+import {removeNotification} from '../../Vuex/actions/global'
 
 export default {
   vuex: {

@@ -5,8 +5,9 @@ import Vuex from 'vuex'
 import store from './Vuex/store'
 import {debug} from './config'
 
-import ValidatorsRegistrar from './Validators/ValidatorsRegistrar'
-import GlobalComponentsRegistrar from './GlobalComponents/GlobalComponentsRegistrar'
+import {ValidatorsRegistrar} from './Validators/ValidatorsRegistrar'
+import {GlobalComponentsRegistrar} from './GlobalComponents/GlobalComponentsRegistrar'
+import {FiltersRegistrar} from './Filters/FiltersRegistrar'
 
 Vue.config.debug = debug
 
@@ -18,6 +19,7 @@ Vue.use(Vuex)
 // Register custom elements.
 ValidatorsRegistrar.register(Vue)
 GlobalComponentsRegistrar.register(Vue)
+FiltersRegistrar.register(Vue)
 
 // A custom transition.
 Vue.transition('fade-in', {

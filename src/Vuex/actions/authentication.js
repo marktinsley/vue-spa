@@ -1,25 +1,5 @@
-import UserApi from '../Library/Api/UserApi'
-import * as types from './mutation-types'
-
-/**
- * Add a notification to the stack of notifications for the user.
- *
- * @param dispatch
- * @param notification
- */
-export const notify = ({dispatch}, notification) => {
-  dispatch(types.ADD_NOTIFICATION, notification)
-}
-
-/**
- * Remove the given notification.
- *
- * @param dispatch
- * @param notification
- */
-export const removeNotification = ({dispatch}, notification) => {
-  dispatch(types.REMOVE_NOTIFICATION, notification)
-}
+import {UserApi} from '../../Library/Api/UserApi'
+import * as types from '../mutation-types'
 
 /**
  * Pulls down session info; used to boot the app on the client.
@@ -31,9 +11,9 @@ export const pullSessionInfo = ({dispatch}) => {
 
   new UserApi()
     .sessionInfo()
-    .then(session => {
-      (session)
-        ? dispatch(types.SESSION_INFO_PULLED, session)
+    .then(result => {
+      (result)
+        ? dispatch(types.SESSION_INFO_PULLED, result)
         : dispatch(types.SESSION_INFO_FAILURE)
     })
     .catch(() => dispatch(types.SESSION_INFO_FAILURE))
@@ -45,14 +25,13 @@ export const pullSessionInfo = ({dispatch}) => {
  * @param dispatch
  * @param email
  * @param password
- * @param remember
  */
-export const login = ({dispatch}, email, password, remember) => {
+export const login = ({dispatch}, email, password) => {
   dispatch(types.LOGIN_REQUEST)
 
   new UserApi()
-    .login(email, password, remember)
-    .then(user => dispatch(types.LOGIN_SUCCESS, user))
+    .login(email, password)
+    .then(({token, user}) => dispatch(types.LOGIN_SUCCESS, token, user))
     .catch(errorInfo => dispatch(types.LOGIN_FAILURE, errorInfo))
 }
 
@@ -69,4 +48,3 @@ export const logout = ({dispatch}) => {
     .then(() => dispatch(types.LOGOUT_SUCCESS))
     .catch(errorInfo => dispatch(types.LOGOUT_FAILURE, errorInfo))
 }
-

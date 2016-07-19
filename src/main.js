@@ -1,6 +1,6 @@
 import {router, store} from './vue-bootstrap'
 import {defineRoutes} from './routes'
-import {pullSessionInfo} from './Vuex/actions'
+import {pullSessionInfo} from './Vuex/actions/authentication'
 
 defineRoutes(router)
   .start({

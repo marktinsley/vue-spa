@@ -1,5 +1,6 @@
-import NotificationBuilder from '../../../Library/NotificationBuilder'
-import {notify, login} from '../../../Vuex/actions'
+import {NotificationBuilder} from '../../../Library/NotificationBuilder'
+import {notify} from '../../../Vuex/actions/global'
+import {login} from '../../../Vuex/actions/authentication'
 
 export default {
   data () {
@@ -48,7 +49,7 @@ export default {
 
   methods: {
     submit () {
-      this.login(this.formData.email, this.formData.password, this.formData.remember ? '1' : '0')
+      this.login(this.formData.email, this.formData.password)
     }
   }
 }
@@ -56,7 +57,6 @@ export default {
 function defaultFormData () {
   return {
     email: '',
-    password: '',
-    remember: 0
+    password: ''
   }
 }

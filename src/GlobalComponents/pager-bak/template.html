@@ -1,0 +1,32 @@
+<nav v-if="paginator.lastPage > 1">
+  <!-- simple -->
+  <ul class="pager" v-if="simple">
+    <li>
+      <a class="clickable" @click="previousPage()" v-if="havePreviousPage">
+        Previous
+      </a>
+    </li>
+    <li>{{ paginator.currentPage }} of {{ paginator.lastPage }}</li>
+    <li>
+      <a class="clickable" @click="nextPage()" v-if="haveNextPage">
+        Next
+      </a>
+    </li>
+  </ul>
+
+  <!-- with-page numbers -->
+  <ul class="pagination" v-else>
+    <li>
+      <a :class="{clickable: havePreviousPage}" @click="previousPage()">
+        Previous
+      </a>
+    </li>
+
+    <li><a class="clickable" @click="goToPage(3)">3</a></li>
+    <li>
+      <a :class="{clickable: haveNextPage}" @click="nextPage()">
+        Next
+      </a>
+    </li>
+  </ul>
+</nav>

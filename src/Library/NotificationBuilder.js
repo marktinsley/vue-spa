@@ -1,4 +1,4 @@
-export default class NotificationBuilder {
+export class NotificationBuilder {
   /**
    * Constructor.
    *
@@ -22,6 +22,18 @@ export default class NotificationBuilder {
   static success (message) {
     return new NotificationBuilder(message)
       .type('success')
+  }
+
+  /**
+   * Build up a danger message.
+   *
+   * @param message
+   *
+   * @returns {NotificationBuilder}
+   */
+  static danger (message) {
+    return new NotificationBuilder(message)
+      .type('danger')
   }
 
   /**

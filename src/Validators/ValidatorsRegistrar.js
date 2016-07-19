@@ -11,7 +11,7 @@ let validators = {
 /**
  * Registers custom validators that can be used with the vue-validator plugin.
  */
-export default class ValidatorsRegistrar {
+export class ValidatorsRegistrar {
   /**
    * Register all of the custom validators.
    *

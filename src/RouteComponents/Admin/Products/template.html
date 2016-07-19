@@ -1,0 +1,56 @@
+<div>
+  <gnb-panel>
+    <span slot="heading">Products</span>
+
+    <div slot="body">
+      <new-modal></new-modal>
+
+      <br>
+      <br>
+
+      <gnb-progress-bar v-if="pullingProducts"></gnb-progress-bar>
+
+      <div v-else>
+        <gnb-error-message :message="pullingProductsErrorMessage" v-if="pullingProductsErrorMessage"></gnb-error-message>
+
+        <div v-else>
+          <div v-if="!productsPaginator || !productsPaginator.haveRecords()" class="alert alert-warning">
+            No products to display.
+          </div>
+
+          <table v-else class="table">
+            <thead>
+              <tr>
+                <th> # </th>
+                <th> Title </th>
+                <th> Price </th>
+                <th> Active </th>
+                <th> Actions </th>
+              </tr>
+            </thead>
+            <tr v-for="product in productsPaginator.data">
+              <td> {{ product.id }} </td>
+              <td> {{ product.title }} </td>
+              <td> {{ product.price | centsToDollars | currency }} </td>
+              <td> {{ product.is_active ? 'Yes' : 'No' }} </td>
+              <td>
+                <a href="#" class="btn btn-primary btn-sm">
+                  <i class="material-icons">edit</i> Edit
+                </a>
+                <a href="#" class="btn btn-danger btn-sm">
+                  <i class="material-icons">delete</i>
+                </a>
+              </td>
+              <td>
+
+              </td>
+            </tr>
+          </table>
+
+          <gnb-pager v-if="productsPaginator" :paginator="productsPaginator" :simple="true"
+              :go-to-page="goToPage"></gnb-pager>
+        </div>
+      </div>
+    </div>
+  </gnb-panel>
+</div>

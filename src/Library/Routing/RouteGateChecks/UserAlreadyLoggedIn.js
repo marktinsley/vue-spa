@@ -1,6 +1,6 @@
-import Base from './Base'
+import {BaseRouteGateCheck} from './BaseRouteGateCheck'
 
-export default class UserAlreadyLoggedIn extends Base {
+export default class UserAlreadyLoggedIn extends BaseRouteGateCheck {
   /**
    * Asks the server if the user with this browser is logged in.
    *

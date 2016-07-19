@@ -6,10 +6,11 @@ import NavBar from './NavBar/Component.vue'
 import PageContainer from './PageContainer/Component.vue'
 import PageHeader from './PageHeader/Component.vue'
 import Panel from './Panel/Component.vue'
+import Pager from './Pager/Component.vue'
 import ProgressBar from './ProgressBar/Component.vue'
 import Spinner from './Spinner/Component.vue'
 
-export default class GlobalComponentsRegistrar {
+export class GlobalComponentsRegistrar {
   /**
    * Register all global components.
    *
@@ -23,6 +24,7 @@ export default class GlobalComponentsRegistrar {
     Vue.component('gnb-page-container', PageContainer)
     Vue.component('gnb-page-header', PageHeader)
     Vue.component('gnb-panel', Panel)
+    Vue.component('gnb-pager', Pager)
     Vue.component('gnb-progress-bar', ProgressBar)
     Vue.component('gnb-spinner', Spinner)
 

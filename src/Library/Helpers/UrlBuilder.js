@@ -1,7 +1,7 @@
 import urlHelper from 'url' // @see https://nodejs.org/api/url.html
 import {apiBaseUrl} from '../../config'
 
-export default class UrlBuilder {
+export class UrlBuilder {
   /**
    * Constructor.
    */

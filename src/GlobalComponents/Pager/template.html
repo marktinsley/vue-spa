@@ -1,0 +1,25 @@
+<nav v-if="paginator.total > 1">
+    <ul class="pagination">
+        <li>
+            <a @click="previousPage()" :disabled="!previousPageNumber" class="clickable">
+                <span :class="{'text-muted': !previousPageNumber}"> Previous </span>
+            </a>
+        </li>
+        <li v-for="page in pages" :class="{active: page.number == paginator.currentPage}"
+            :disabled="page.number === null">
+            <a @click="goToPage(page.number)">
+                {{ page.number ? page.number : '...' }}
+            </a>
+        </li>
+        <li>
+            <a @click="nextPage()" :disabled="!nextPageNumber" class="clickable">
+                <span :class="{'text-muted': !nextPageNumber}"> Next </span>
+            </a>
+        </li>
+        <li v-if="paginator.total > maxPageButtons">
+            <a @click="jumpToPage" class="clickable" title="Jump to a page" aria-label="Jump">
+                <span class="glyphicon glyphicon-share"></span>
+            </a>
+        </li>
+    </ul>
+</nav>

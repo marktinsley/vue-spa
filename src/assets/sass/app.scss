@@ -1,0 +1,17 @@
+$icon-font-path: "../../../node_modules/bootstrap-sass/assets/fonts/bootstrap/";
+@import "../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import './bootswatch-paper/variables';
+@import './bootswatch-paper/bootswatch';
+@import "../../../node_modules/vue-animate/dist/vue-animate.min.css";
+
+body {
+  padding-bottom: 160px;
+}
+
+.material-icons {
+  vertical-align: middle;
+}
+
+.clickable {
+  cursor: pointer;
+}

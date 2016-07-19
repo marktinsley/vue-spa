@@ -1,4 +1,4 @@
-export default class BaseRouteGateCheck {
+export class BaseRouteGateCheck {
   /**
    * Constructor.
    *

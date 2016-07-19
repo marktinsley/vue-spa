@@ -2,7 +2,7 @@ import UserAlreadyLoggedIn from './RouteGateChecks/UserAlreadyLoggedIn'
 import AuthenticatedUsersOnly from './RouteGateChecks/AuthenticatedUsersOnly'
 import AdminUsersOnly from './RouteGateChecks/AdminUsersOnly'
 
-export default class RouteGate {
+export class RouteGate {
   /**
    * Constructor.
    *

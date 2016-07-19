@@ -1,39 +1,24 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import NotificationBuilder from '../Library/NotificationBuilder'
+import global from './modules/global'
 import authentication from './modules/authentication'
+import adminProducts from './modules/admin/products'
 import {debug} from '../../config'
-import {ADD_NOTIFICATION, REMOVE_NOTIFICATION} from './mutation-types'
 
 Vue.use(Vuex)
 
 Vue.config.debug = debug
 
-const state = {
-  notifications: []
-}
-
-const mutations = {
-  // Add a new notification for the user.
-  [ADD_NOTIFICATION] (state, notification) {
-    if (notification instanceof NotificationBuilder) {
-      notification = notification.get()
-    }
-
-    state.notifications.push(notification)
-  },
-
-  // Remove the given notification from the list of user notifications.
-  [REMOVE_NOTIFICATION]: function (state, notification) {
-    state.notifications.$remove(notification)
-  }
-}
+const state = {}
+const mutations = {}
 
 export default new Vuex.Store({
   strict: debug,
   state,
   mutations,
   modules: {
-    authentication
+    global,
+    authentication,
+    adminProducts
   }
 })

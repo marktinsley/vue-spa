@@ -1,7 +1,7 @@
 import forEach from 'lodash.foreach'
 import objectHas from 'lodash.has'
 
-export default class ServerErrorParser {
+export class ServerErrorParser {
   /**
    * Constructor.
    *
@@ -9,6 +9,7 @@ export default class ServerErrorParser {
    */
   constructor (errorInfo) {
     this._errorInfo = errorInfo
+    this._messagePrefix = ''
     this.defaultErrorMessage('An error occurred.')
     this._parseErrorMessage()
     this._parseErrorList()
@@ -26,17 +27,59 @@ export default class ServerErrorParser {
   }
 
   /**
+   * Prefix the message, if any, with this bit of text.
+   *
+   * @param {String}
+   */
+  prefix (messagePrefix) {
+    this._messagePrefix = messagePrefix
+
+    return this
+  }
+
+  /**
    * Parse out the error message from the error info given.
    *
    * @private
    */
   _parseErrorMessage () {
-    let haveMessage = objectHas(this._errorInfo, 'body.message') &&
-       this._errorInfo.body.message
+    let message = this._checkForMessageInBody()
 
-    this._errorMessage = (haveMessage)
-       ? this._errorInfo.body.message
-       : this._defaultErrorMessage
+    if (!message) {
+      message = this._checkForMessageInErrorObject()
+    }
+
+    this._errorMessage = message || this._defaultErrorMessage
+  }
+
+  /**
+   * Check to see if there is an error message in the response body.
+   *
+   * @return {String|null}
+   */
+  _checkForMessageInBody () {
+    let result = null
+
+    if (objectHas(this._errorInfo, 'body.message')) {
+      result = this._errorInfo.body.message
+    }
+
+    return result
+  }
+
+  /**
+   * Check to see if there is an error message in an error object.
+   *
+   * @return {String|null}
+   */
+  _checkForMessageInErrorObject () {
+    let result = null
+
+    if (objectHas(this._errorInfo, 'error.message')) {
+      result = this._errorInfo.error.message
+    }
+
+    return result
   }
 
   /**
@@ -84,7 +127,11 @@ export default class ServerErrorParser {
    * @returns {String}
    */
   get errorMessage () {
-    return this._errorMessage
+    let message = this._errorMessage
+
+    return (this._messagePrefix && message)
+      ? this._messagePrefix + ' ' + message
+      : message
   }
 
   /**

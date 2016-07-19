@@ -1,10 +1,10 @@
-import Base from './Base'
+import {BaseRouteGateCheck} from './BaseRouteGateCheck'
 
 /**
  * If the route requires the user to be authenticated (auth: true),
  * and user is not logged in, redirect to login page.
  */
-export default class AuthenticatedUsersOnly extends Base {
+export default class AuthenticatedUsersOnly extends BaseRouteGateCheck {
   /**
    * Perform the check.
    *

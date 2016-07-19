@@ -1,7 +1,8 @@
 import objectHas from 'lodash.has'
-import HttpClient from './HttpClient'
+import {HttpClient} from './HttpClient'
+import store from '../../Vuex/store'
 
-export default class UserApi {
+export class UserApi {
   /**
    * Constructor.
    */
@@ -25,13 +26,30 @@ export default class UserApi {
    *
    * @param email
    * @param password
-   * @param remember
    *
-   * @returns {Promise}
+   * @returns {Promise<string>}
    */
-  login (email, password, remember) {
-    return this._client.post('api/login', {email, password, remember})
-      .then(response => (objectHas(response, 'body.user') ? response.body.user : null))
+  login (email, password) {
+    return new Promise((resolve, reject) => {
+      // Attempt login.
+      this._client.post('api/login', {email, password})
+        .catch(error => reject(error))
+        .then(response => {
+          let token = objectHas(response, 'body.token')
+            ? response.body.token
+            : null
+
+          if (!token) {
+            reject()
+            return
+          }
+
+          // Retrieve user info and return token and user.
+          this.authenticatedUser(token)
+            .then(user => resolve({user, token}))
+            .catch(error => reject(error))
+        })
+    })
   }
 
   /**
@@ -40,7 +58,21 @@ export default class UserApi {
    * @returns {Promise}
    */
   logout () {
-    return this._client.get('api/logout')
+    return this._client.post('api/logout', {
+      token: store.state.authentication.token
+    })
+  }
+
+  /**
+   * Gives you the currently logged in user.
+   *
+   * @returns {Promise}
+   */
+  authenticatedUser (token = null) {
+    return this._client
+      .withToken(token)
+      .get('api/authenticated-user')
+      .then(response => objectHas(response, 'body.user') ? response.body.user : null)
   }
 
   /**
@@ -51,7 +83,17 @@ export default class UserApi {
    * @returns {Promise}
    */
   sessionInfo () {
-    return this._client.get('api/session-info')
-      .then(response => (objectHas(response, 'body') ? response.body : null))
+    let token = window.localStorage.getItem('token')
+
+    if (!token || token === 'null') {
+      return Promise.resolve()
+    }
+
+    return this._client
+      .withToken(token)
+      .get('api/authenticated-user')
+      .then(response => (objectHas(response, 'body.user')
+        ? {token, user: response.body.user}
+        : null))
   }
 }
