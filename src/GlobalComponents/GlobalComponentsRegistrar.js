@@ -1,7 +1,5 @@
 import {alert, datepicker, modal} from 'vue-strap'
 import ErrorMessage from './ErrorMessage/Component.vue'
-import Notification from './Notification/Component.vue'
-import NotificationGroup from './NotificationGroup/Component.vue'
 import NavBar from './NavBar/Component.vue'
 import PageContainer from './PageContainer/Component.vue'
 import PageHeader from './PageHeader/Component.vue'
@@ -18,8 +16,6 @@ export class GlobalComponentsRegistrar {
    */
   static register (Vue) {
     Vue.component('gnb-error-message', ErrorMessage)
-    Vue.component('gnb-notification', Notification)
-    Vue.component('gnb-notification-group', NotificationGroup)
     Vue.component('gnb-nav-bar', NavBar)
     Vue.component('gnb-page-container', PageContainer)
     Vue.component('gnb-page-header', PageHeader)

@@ -123,7 +123,7 @@ export class HttpClient {
           if (error || !response.ok || messageIndicatesError) {
             HttpClient._handleError(error, response)
             reject({
-              error: error,
+              error,
               body: objectHas(response, 'body') ? response.body : null
             })
           } else {

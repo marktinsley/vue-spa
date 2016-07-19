@@ -5,7 +5,7 @@ import * as types from '../../mutation-types'
 * Pull the products from the API.
 *
 * @param dispatch
-* @param notification
+* @param pageNumber
 */
 export const pullProducts = ({dispatch}, pageNumber) => {
   dispatch(types.PULL_PRODUCTS_REQUEST)

@@ -3,6 +3,7 @@ $icon-font-path: "../../../node_modules/bootstrap-sass/assets/fonts/bootstrap/";
 @import './bootswatch-paper/variables';
 @import './bootswatch-paper/bootswatch';
 @import "../../../node_modules/vue-animate/dist/vue-animate.min.css";
+@import "../../../node_modules/toastr/toastr.scss";
 
 body {
   padding-bottom: 160px;

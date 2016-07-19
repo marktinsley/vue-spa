@@ -1,6 +1,5 @@
-import {NotificationBuilder} from '../../../Library/NotificationBuilder'
-import {notify} from '../../../Vuex/actions/global'
 import {login} from '../../../Vuex/actions/authentication'
+import toastr from 'toastr'
 
 export default {
   data () {
@@ -10,14 +9,11 @@ export default {
   },
 
   vuex: {
-    actions: {notify, login},
+    actions: {login},
     getters: {
       loading: state => state.authentication.processingLogin,
-
       userIsLoggedIn: state => state.authentication.userIsLoggedIn,
-
       errorMessage: state => state.authentication.loginErrorMessage,
-
       errorList: state => state.authentication.loginErrorList
     }
   },
@@ -38,9 +34,7 @@ export default {
   watch: {
     userIsLoggedIn (isLoggedIn) {
       if (isLoggedIn) {
-        this.notify(NotificationBuilder
-          .success('You have logged in.')
-          .shortDisplay())
+        toastr.success('You have logged in.')
 
         this.$route.router.go('/')
       }
