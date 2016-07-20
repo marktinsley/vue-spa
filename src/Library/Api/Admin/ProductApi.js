@@ -31,9 +31,20 @@ export class ProductApi {
    */
   create (product) {
     if (product instanceof Product) {
-      return this._client.post('api/admin/products/store', {product})
+      return this._client.post('api/admin/products', {product})
     }
 
     console.warn('In order to create a product, you must supply a value of type Product.')
+  }
+
+  /**
+   * Delete a product.
+   *
+   * @param {Product} product
+   *
+   * @returns {Promise}
+   */
+  destroy (product) {
+    return this._client.deleteIt('api/admin/products/' + product.id)
   }
 }

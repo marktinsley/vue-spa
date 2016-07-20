@@ -1,40 +1,40 @@
 <gnb-page-container>
-  <gnb-page-header>
-    <i class="material-icons">settings</i>
-    Admin
-  </gnb-page-header>
+    <gnb-page-header>
+        <i class="material-icons">settings</i>
+        Admin
+    </gnb-page-header>
 
-  <div class="row">
-    <div class="col-sm-3">
-      <ul class="nav nav-pills nav-stacked">
-        <li role="presentation" v-link-active>
-          <a v-link="{ path: '/admin/home' }">
-            <i class="material-icons">home</i>
-            Home
-          </a>
-        </li>
-        <li role="presentation" v-link-active>
-          <a v-link="{ path: '/admin/products' }">
-            <i class="material-icons">motorcycle</i>
-            Products
-          </a>
-        </li>
-        <li role="presentation" v-link-active>
-          <a v-link="{ path: '/admin/users' }">
-            <i class="material-icons">people</i>
-            Users
-          </a>
-        </li>
-        <li role="presentation" v-link-active>
-          <a v-link="{ path: '/admin/nabs' }">
-            <i class="material-icons">gavel</i>
-            Auctions
-          </a>
-        </li>
-      </ul>
+    <div class="row">
+        <div class="col-sm-3">
+            <ul class="nav nav-pills nav-stacked">
+                <li role="presentation" v-link-active>
+                    <a v-link="{ path: '/admin/home' }">
+                        <i class="material-icons">home</i>
+                        Home
+                    </a>
+                </li>
+                <li role="presentation" v-link-active>
+                    <a v-link="{ path: '/admin/products' }">
+                        <i class="material-icons">motorcycle</i>
+                        Products
+                    </a>
+                </li>
+                <li role="presentation" v-link-active>
+                    <a v-link="{ path: '/admin/users' }">
+                        <i class="material-icons">people</i>
+                        Users
+                    </a>
+                </li>
+                <li role="presentation" v-link-active>
+                    <a v-link="{ path: '/admin/nabs' }">
+                        <i class="material-icons">touch_app</i>
+                        Auctions
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-sm-9">
+            <router-view transition="fadeUp"></router-view>
+        </div>
     </div>
-    <div class="col-sm-9">
-      <router-view transition="fadeUp"></router-view>
-    </div>
-  </div>
 </gnb-page-container>

@@ -1,9 +1,6 @@
-export class Product
-{
+export class Product {
   /**
    * Constructor.
-   *
-   * @param {Object} attributes
    */
   constructor ({id, title, price, description}) {
     this.id = id

@@ -103,7 +103,7 @@ const mutations = {
     state.token = null
     state.user = null
 
-    window.localStorage.setItem('token', null)
+    window.localStorage.setItem('token', '')
   },
 
   // Failed to logout.

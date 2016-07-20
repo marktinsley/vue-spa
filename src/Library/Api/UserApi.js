@@ -85,7 +85,7 @@ export class UserApi {
   sessionInfo () {
     let token = window.localStorage.getItem('token')
 
-    if (!token || token === 'null') {
+    if (!token) {
       return Promise.resolve()
     }
 
