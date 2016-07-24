@@ -71,7 +71,7 @@ export class HttpClient {
    *
    * @returns {Promise}
    */
-  post (uri, params) {
+  post (uri, params = {}) {
     return this._promiseIt('post', uri, params)
   }
 
@@ -162,16 +162,20 @@ export class HttpClient {
     if (requestType === 'delete') requestType = 'del'
 
     // Instantiate.
-    let agent = superAgent(null, {
-      defaultExpiration: this._cacheSeconds
-    })
+    let agent = superAgent()
 
     // Set the method and URL for the request.
     agent = agent[requestType](HttpClient._resolveUrl(uri))
       .accept('application/json')
 
+    if (this._cacheSeconds > 0) {
+      agent.expiration(this._cacheSeconds)
+    } else {
+      agent.forceUpdate()
+    }
+
     if (this._token) {
-      agent.set('Authorization', `Bearer ${this._token}`)
+      agent = agent.set('Authorization', `Bearer ${this._token}`)
     }
 
     return HttpClient._addParamsToAgent(agent, requestType, params)

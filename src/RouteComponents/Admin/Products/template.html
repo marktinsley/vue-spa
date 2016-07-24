@@ -3,7 +3,7 @@
         <span slot="heading">Products</span>
 
         <div slot="body">
-            <new-modal></new-modal>
+            <manage-modal :product.sync="newProduct"></manage-modal>
 
             <br>
             <br>
@@ -37,9 +37,7 @@
                             <td> {{ product.price | centsToDollars | currency }}</td>
                             <td> {{ product.is_active ? 'Yes' : 'No' }}</td>
                             <td>
-                                <a href="#" class="btn btn-primary btn-sm">
-                                    <i class="material-icons">edit</i>
-                                </a>
+                                <manage-modal :product.sync="product"></manage-modal>
                                 <a @click="confirmDestroy(product)" class="btn btn-danger btn-sm">
                                     <i class="material-icons">delete</i>
                                 </a>

@@ -1,11 +1,13 @@
+import {Currency} from '../Library/Helpers/Currency'
+
 export default {
   // model -> view
   read (cents) {
-    return (+cents / 100).toFixed(2)
+    return Currency.centsToDollars(cents)
   },
 
   // view -> model
   write (dollars) {
-    return Math.floor(+dollars * 100)
+    return Currency.dollarsToCents(dollars)
   }
 }

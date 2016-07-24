@@ -13,6 +13,10 @@ export class Paginator {
 
   /**
    * Build the object based on a Laravel paginator JSON response.
+   *
+   * @param json
+   *
+   * @returns {Paginator}
    */
   static fromLaravelJson (json) {
     let result = new Paginator()
@@ -36,8 +40,22 @@ export class Paginator {
 
   /**
    * Do we have any records to display on this page?
+   *
+   * @returns {boolean}
    */
   haveRecords () {
     return Array.isArray(this.data) && this.data.length > 0
+  }
+
+  /**
+   *
+   * @param {function} mapCallback
+   *
+   * @returns {Paginator}
+   */
+  mapDataInPlace (mapCallback) {
+    this.data = this.data.map(mapCallback)
+
+    return this
   }
 }

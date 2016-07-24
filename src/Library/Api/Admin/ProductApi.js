@@ -1,5 +1,6 @@
 import objectHas from 'lodash.has'
 import {HttpClient} from '../HttpClient'
+import {Paginator} from '../../Paginator'
 import {Product} from '../../DataModels/Product'
 
 export class ProductApi {
@@ -15,11 +16,13 @@ export class ProductApi {
    *
    * @param {Number} page
    *
-   * @returns {Promise}
+   * @returns {Promise<Paginator|null>}
    */
   forPage (page = 1) {
     return this._client.get('api/admin/products', {page})
-      .then(response => (objectHas(response, 'body') ? response.body : null))
+      .then(response => (objectHas(response, 'body')
+        ? Paginator.fromLaravelJson(response.body)
+        : null))
   }
 
   /**
@@ -27,14 +30,28 @@ export class ProductApi {
    *
    * @param {Product} product
    *
+   * @return {Promise<Product|null>}
+   */
+  store (product) {
+    return this._client.post('api/admin/products', product)
+      .then(result => {
+        if (objectHas(result, 'body.product')) {
+          return new Product(result.body.product)
+        }
+
+        return null
+      })
+  }
+
+  /**
+   * Update a product.
+   *
+   * @param {Product} product
+   *
    * @return {Promise}
    */
-  create (product) {
-    if (product instanceof Product) {
-      return this._client.post('api/admin/products', {product})
-    }
-
-    console.warn('In order to create a product, you must supply a value of type Product.')
+  update (product) {
+    return this._client.put('api/admin/products/' + product.id, product)
   }
 
   /**

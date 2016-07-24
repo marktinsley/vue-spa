@@ -1,9 +1,17 @@
-import NewModal from './NewModal/Component'
+import ManageModal from './ManageModal/Component'
 import {Paginator} from '../../../Library/Paginator'
+import {Product} from '../../../Library/DataModels/Product'
 import {pullProducts, destroy} from '../../../Vuex/actions/admin/products'
 
 export default {
-  components: [NewModal],
+  components: {ManageModal},
+
+  data () {
+    return {
+      newProduct: new Product({})
+    }
+  },
+
   vuex: {
     actions: {pullProducts, destroy},
     getters: {

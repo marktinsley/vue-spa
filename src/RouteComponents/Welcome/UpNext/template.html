@@ -1,25 +1,35 @@
 <gnb-panel>
-  <div slot="heading">
-    Upcoming Nab
-  </div>
+    <div slot="body">
+        <gnb-progress-bar v-if="!initialPullComplete && pullingOptInAuction"></gnb-progress-bar>
 
-  <div slot="body">
-    <div class="row">
-      <div class="col-md-5">
-        <img src="//placephant.com/300/300" class="img-responsive">
-      </div>
-      <div class="col-md-7">
-        <h2>Elephant</h2>
-        <h3>12:20 until start</h3>
-        <p>
-          setting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1
-        </p>
-        <p>
-          <button class="btn btn-primary">
-            Register
-          </button>
-        </p>
-      </div>
+        <div v-else>
+            <div v-if="!auction || pullOptInAuctionError" class="alert alert-danger">
+                <span v-if="pullOptInAuctionError"> {{ pullOptInAuctionError }} </span>
+                <span v-else>No auction found.</span>
+            </div>
+            <div v-else class="row">
+                <div class="col-md-5">
+                    <img src="//placephant.com/300/300" class="img-responsive">
+                </div>
+                <div class="col-md-7">
+                    <h2>{{ auction.product.title }}</h2>
+                    <h3> {{ auction.opt_in_ends_in }} until start</h3>
+                    <p>
+                        {{ auction.product.description }}
+                    </p>
+
+                    <gnb-progress-bar v-show="registeringForAuction"></gnb-progress-bar>
+                    <p v-show="userIsRegisteredForCurrentOptIn" class="text-success">
+                        <i class="material-icons">check</i>
+                        You are registered for this auction.
+                    </p>
+                    <p v-show="!userIsRegisteredForCurrentOptIn && userIsLoggedIn && !registeringForAuction">
+                        <button class="btn btn-primary" @click="register">
+                            Register
+                        </button>
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </gnb-panel>

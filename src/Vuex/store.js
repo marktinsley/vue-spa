@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import global from './modules/global'
+import auctions from './modules/auctions'
 import authentication from './modules/authentication'
 import adminProducts from './modules/admin/products'
-import {debug} from '../../config'
+import {debug} from '../config'
 
 Vue.use(Vuex)
 
@@ -18,6 +19,7 @@ export default new Vuex.Store({
   mutations,
   modules: {
     global,
+    auctions,
     authentication,
     adminProducts
   }
