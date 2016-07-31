@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import global from './modules/global'
 import auctions from './modules/auctions'
+import auctionRooms from './modules/auctionRooms'
 import authentication from './modules/authentication'
 import adminProducts from './modules/admin/products'
 import {debug} from '../config'
@@ -20,6 +21,7 @@ export default new Vuex.Store({
   modules: {
     global,
     auctions,
+    auctionRooms,
     authentication,
     adminProducts
   }

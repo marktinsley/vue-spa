@@ -1,3 +1,4 @@
+import {UrlBuilder} from '../../../Library/Helpers/UrlBuilder'
 import {pullOptInAuction, registerFor} from '../../../Vuex/actions/auctions'
 
 export default {
@@ -20,7 +21,18 @@ export default {
 
   data () {
     return {
-      initialPullComplete: false
+      initialPullComplete: false,
+      pullInterval: null
+    }
+  },
+
+  computed: {
+    auctionImage () {
+      if (this.auction) {
+        return new UrlBuilder()
+          .uri('api/product/image/' + this.auction.product.id)
+          .build()
+      }
     }
   },
 
@@ -39,11 +51,15 @@ export default {
   created () {
     this.pullOptInAuction()
 
-    window.setInterval(() => {
+    this.pullInterval = window.setInterval(() => {
       if (this.pullingOptInAuctionComplete) {
         this.pullOptInAuction()
       }
     }, 1000)
+  },
+
+  destroyed () {
+    window.clearInterval(this.pullInterval)
   },
 
   methods: {

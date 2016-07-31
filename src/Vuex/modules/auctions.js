@@ -20,7 +20,9 @@ const state = {
 
   registeringForAuction: false,
   registeringForAuctionComplete: false,
-  registeringForAuctionError: null
+  registeringForAuctionError: null,
+
+  auctionInfo: {}
 }
 
 const mutations = {
@@ -48,6 +50,7 @@ const mutations = {
   [PULL_CURRENT_OPT_IN_FAILURE] (state, errorInfo) {
     state.pullingOptInAuction = false
     state.pullingOptInAuctionComplete = true
+    state.optInAuction = null
 
     state.pullOptInAuctionError = ServerErrorParser
       .parse(errorInfo)

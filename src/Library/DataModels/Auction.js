@@ -9,7 +9,8 @@ export class Auction {
     min_seats = null, max_seats = null, seat_price = null,
     regular_price = null, max_price = null, current_price = null,
     opt_in_ends_at = null, original_ends_at = null, ends_at = null,
-    closed_at = null, opt_in_ends_in = null, ends_in = null, product = null
+    closed_at = null, opt_in_ends_in = null, ends_in = null,
+    is_open = null, product = null
   }) {
     this.id = id
     this.product_id = product_id
@@ -26,6 +27,7 @@ export class Auction {
     this.closed_at = closed_at
     this.opt_in_ends_in = opt_in_ends_in
     this.ends_in = ends_in
+    this.is_open = is_open
 
     this.product = product
       ? new Product(product)

@@ -1,66 +1,66 @@
 <nav class="navbar navbar-default navbar-static-top gnb-NavBar">
-  <div class="container">
-    <div class="navbar-header">
+    <div class="container">
+        <div class="navbar-header">
 
-      <!-- Collapsed Hamburger -->
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-      data-target="#app-navbar-collapse">
-      <span class="sr-only">Toggle Navigation</span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
+            <!-- Collapsed Hamburger -->
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#app-navbar-collapse">
+                <span class="sr-only">Toggle Navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
 
-    <!-- Branding Image -->
-    <a class="navbar-brand" v-link="{ path: '/' }">
-      <i class="material-icons">touch_app</i>
-      GottaNabit
-    </a>
-  </div>
-
-  <div class="collapse navbar-collapse" id="app-navbar-collapse">
-    <p class="navbar-text navbar-left">
-      You are registered for a currently running auction.
-      <a v-link="{ path: '/room/123' }" class="navbar-link">Join the game.</a>
-    </p>
-
-    <!-- Right Side Of Navbar -->
-    <ul v-if="userIsLoggedIn" class="nav navbar-nav navbar-right">
-      <li v-if="user.is_admin">
-        <a v-link="{ path: '/admin' }">
-          <i class="material-icons">settings</i>
-          Admin
-        </a>
-      </li>
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-          {{ user.name }}
-          <i class="material-icons">arrow_drop_down</i>
-        </a>
-
-        <ul class="dropdown-menu" role="menu">
-          <li>
-            <a v-link="{ name: 'account' }">
-              <i class="material-icons">face</i>
-              <span> Account </span>
+            <!-- Branding Image -->
+            <a class="navbar-brand" v-link="{ path: '/' }">
+                <i class="material-icons">touch_app</i>
+                GottaNabit
             </a>
-          </li>
-          <li>
-            <a v-link="{ name: 'logout' }">
-              <i class="material-icons">exit_to_app</i>
-              <span> Logout </span>
-            </a>
-          </li>
-        </ul>
-      </li>
-    </ul>
+        </div>
 
-    <!-- Authentication Links -->
-    <ul v-else class="nav navbar-nav navbar-right">
-      <li><a v-link="{ name: 'login' }">Login</a></li>
-      <li><a class="gnb-NavBar__register-button" v-link="{ path: '/user/register' }">Register</a></li>
-    </ul>
+        <div class="collapse navbar-collapse" id="app-navbar-collapse">
+            <p class="navbar-text navbar-left" v-if="runningAuction">
+                You are registered for a currently running auction.
+                <a v-link="{ path: '/room/' + runningAuction.id }" class="navbar-link">Join the game.</a>
+            </p>
 
-  </div>
-</div>
+            <!-- Right Side Of Navbar -->
+            <ul v-if="userIsLoggedIn" class="nav navbar-nav navbar-right">
+                <li v-if="user.is_admin">
+                    <a v-link="{ path: '/admin' }">
+                        <i class="material-icons">settings</i>
+                        Admin
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        {{ user.name }}
+                        <i class="material-icons">arrow_drop_down</i>
+                    </a>
+
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a v-link="{ name: 'account' }">
+                                <i class="material-icons">face</i>
+                                <span> Account </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a v-link="{ name: 'logout' }">
+                                <i class="material-icons">exit_to_app</i>
+                                <span> Logout </span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <!-- Authentication Links -->
+            <ul v-else class="nav navbar-nav navbar-right">
+                <li><a v-link="{ name: 'login' }">Login</a></li>
+                <li><a class="gnb-NavBar__register-button" v-link="{ path: '/user/register' }">Register</a></li>
+            </ul>
+
+        </div>
+    </div>
 </nav>

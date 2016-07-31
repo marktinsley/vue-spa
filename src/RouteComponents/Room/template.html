@@ -1,43 +1,76 @@
 <gnb-page-container>
-  <gnb-page-header> Game Room </gnb-page-header>
+    <gnb-progress-bar v-if="pullingInfo"></gnb-progress-bar>
 
-  <div class="row">
-    <div class="col-md-9">
-      <canvas id="canvas" width="300" height="300"></canvas>
+    <div v-else>
+        <gnb-page-header>
+            Game Room
+            <small>{{ auction.product.title }}</small>
+        </gnb-page-header>
+
+        <div class="row">
+            <div class="col-sm-7">
+                <img :src="auctionImage" class="img-responsive">
+            </div>
+
+            <div class="col-sm-5">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h3>{{ auction.ends_in }}</h3>
+                    </div>
+                    <div class="col-sm-6">
+                        <h3>{{ currentPrice | currency }}</h3>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div v-if="!auction || !auction.is_open" class="alert alert-danger">
+                    This auction is not currently open.
+                </div>
+
+                <div v-else class="row">
+                    <gnb-progress-bar v-if="placingBidForAuction"></gnb-progress-bar>
+                    <p v-else>
+                        <a @click="placeBidAmount(1)" class="btn btn-success">
+                            Bid 1 &cent;
+                        </a>
+                        <a @click="placeBidAmount(5)" class="btn btn-success">
+                            Bid 5 &cent;
+                        </a>
+                        <a @click="placeBidAmount(10)" class="btn btn-success">
+                            Bid 10 &cent;
+                        </a>
+                        <a @click="placeBidAmount(15)" class="btn btn-success">
+                            Bid 15 &cent;
+                        </a>
+                    </p>
+                </div>
+
+                <hr>
+
+                <gnb-panel v-if="latestBids.length > 0">
+                    <span slot="heading">Recent Bids</span>
+
+                    <table slot="body" class="table">
+                        <thead>
+                        <tr>
+                            <th>
+                                User
+                            </th>
+                            <th>
+                                Amount
+                            </th>
+                        </tr>
+                        </thead>
+                        <tr v-for="bid in latestBids">
+                            <td> {{ bid.user.name }}</td>
+                            <td>
+                                {{ bid.amount }} &cent;
+                            </td>
+                        </tr>
+                    </table>
+                </gnb-panel>
+            </div>
+        </div>
     </div>
-    <div class="col-md-3">
-      <h3>25:02</h3>
-
-      <hr>
-
-      <table class="table">
-        <thead>
-          <tr>
-            <th>
-              User
-            </th>
-            <th>
-              Nabs
-            </th>
-          </tr>
-        </thead>
-        <tr>
-          <td>
-            Zambosinka
-          </td>
-          <td>
-            201
-          </td>
-        </tr>
-        <tr>
-          <td>
-            Suuuu
-          </td>
-          <td>
-            123
-          </td>
-        </tr>
-      </table>
-    </div>
-  </div>
 </gnb-page-container>

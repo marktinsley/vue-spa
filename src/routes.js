@@ -25,7 +25,7 @@ export const defineRoutes = router => {
     '/user/login': {component: UserLogin, name: 'login'},
     '/user/logout': {component: UserLogout, name: 'logout'},
     '/user/register': {component: UserRegister},
-    '/room/:room_number': {component: Room},
+    '/room/:auction_id': {component: Room, auth: true},
     '/admin': {
       component: Admin,
       auth: true,
